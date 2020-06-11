@@ -17,23 +17,26 @@
       <div class="container">
 
         <button type="button" class="btn btn-outline-dark btn-sm" id="highscores">View High Scores</button>
-        <p i="timer">Timer</p>
+        <p id="timeEl"></p>
       </div>
     </header>
     <!-- container for questions and buttons -->
-    <div class="container">
+    <div class="container" class="text-center">
       <div class="jumbotron"> 
         <h1 class="text-center">Coding Quiz Challenge</h1>  
-      <h4 class="text-center">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</h4>
-        <hr class="my-4">  
+      <p class="text-center" class="main-text" id="start-text">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
       <button type="button" class="btn btn-primary btn-sm" id="startButton">Start Quiz</button>
       
-        <div class="btn-group-vertical" role="group" aria-label="Basic example">
+      
+        <hr class="my-4">  
+     
+        </div>
+        
+        <div class="btn-group-vertical" id="answerButtons" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-secondary" id="answer1">Answer1</button>
           <button type="button" class="btn btn-secondary" id="answer2">Answer2</button>
           <button type="button" class="btn btn-secondary" id="answer3">Answer3</button>
           <button type="button" class="btn btn-secondary" id="answer4">Answer4</button>
-        </div>
       </div>
     </div>
     
