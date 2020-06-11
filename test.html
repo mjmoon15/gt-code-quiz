@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main">
+      <div id="welcome">
+        <h1>Welcome to my application!</h1>
+        <h3>Click the button below to start!</h3>
+        <button id="start">Start</button>
+      </div>
+      <div id="question" style="display: none;"></div>
+    </div>
+​
+    <script type="text/javascript">
+      // VARIABLES
+      var welcomeEl = document.getElementById("welcome");
+      var startButtonEl = document.getElementById("start");
+      var questionEl = document.getElementById("question");
+​
+      var favoriteBeverages = ["Coca Cola", "Pepsi", "RC Cola"];
+      var currentIndex = 0;
+​
+      // FUNCTIONS
+​
+      function clearWelcome() {
+        // document.getElementById("welcome").innerHTML = "";
+        welcomeEl.style = "display:none";
+      }
+​
+      function resetWelcome() {
+        welcomeEl.style = "display: block";
+      }
+​
+      function startGame() {
+        questionEl.style = "display: block";
+      }
+​
+      function displayQuestion() {
+          questionEl.innerHTML = "";
+          var question = document.createElement("h1");
+          question.textContent = favoriteBeverages[currentIndex];
+          questionEl.append(question);
+      }
+​
+      // EVENT LISTENERS
+      startButtonEl.addEventListener("click", function() {
+          console.log("Clicked the start button");
+          welcomeEl.style = "display:none";
+          questionEl.style = "display: block";
+          questionEl.innerHTML = "";
+          var question = document.createElement("h1");
+          question.textContent = favoriteBeverages[currentIndex];
+          questionEl.append(question);
+      })
+    //   startButtonEl.addEventListener("click", function () {
+    //     console.log("you clicked the start button");
+    //     clearWelcome();
+    //     startGame();
+    //     displayQuestion();
+    //   });
+    </script>
+  </body>
+</html>
