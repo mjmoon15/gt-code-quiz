@@ -49,16 +49,66 @@
       </div>
       <div class="jumbotron" id="questionJumbo" style="display:none">
         <h1 class="text-center">Coding Quiz Challenge</h1>
-        <p class="text-center" class="main-text" id="question-text">
-          Commonly used data types DO NOT include
+        <p class="text-center" class="main-text" id="questionEl"> 
         </p>
-        <div
-          class="btn-group-vertical"
-          id="answerButtons"
-          role="group"
-          aria-label="Basic example"
-        >
-          <button type="button" class="btn btn-secondary" id="answer1">
+        <button type="button" class="btn btn-primary" id="startGame">
+          Start the Quiz
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" id="quiz-page">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <div class="row">
+        <div id="question"></div>
+      </div>
+      <br />
+      <div>
+        <!-- bucket of answers ul from answers array -->
+        <ul id="answers-ul">
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" id="quiz-area">
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <div class="row">
+        <div id="question"></div>
+      </div>
+      <br />
+      <div>
+        <ul class="selections"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" id="result-area">
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <div class="row">
+        <div id="results-display"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" id="score-area">
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <div class="row">
+        <div id="final-score-area"></div>
+    </div>
+  </div>
+</div>
+
+          <!-- <button type="button" class="btn btn-secondary" id="answer1">
             Answer1
           </button>
           <button type="button" class="btn btn-secondary" id="answer2">
@@ -69,7 +119,7 @@
           </button>
           <button type="button" class="btn btn-secondary" id="answer4">
             Answer4
-          </button>
+          </button> -->
         </div>
 
         <hr class="my-4" />
