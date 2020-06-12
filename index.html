@@ -98,12 +98,22 @@
     </div>
   </div>
 </div>
-<div class="container" id="score-area">
+<div class="container" id="scoreboard">
   <div class="row justify-content-sm-center">
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
       <div class="row">
-        <div id="final-score-area"></div>
+        <div id="final-score-area">
+          <div class="jumbotron">
+            <h1 class="display-4" >Scoreboard</h1>
+            <div class="form-group">
+                <label for="initials">Enter your Initials</label>
+                <input type="initials" class="form-control" id="initials" placeholder="MM">
+              </div>
+            <a class="btn btn-primary btn-lg" id="submit-button" href="#" role="button">Submit</a>
+            <p id="scores"></p>
+          </div>
+        </div>
     </div>
   </div>
 </div>

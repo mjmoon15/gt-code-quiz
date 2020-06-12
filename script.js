@@ -8,11 +8,12 @@ var viewHighscores = document.getElementById("highscores");
 var timeEl = document.getElementById("timeEl");
 var jumbo = document.getElementById("startJumbo");
 var answerEl = document.getElementById("answers-ul");
-var questionDiv = document.getElementById("#question");
+var questionDiv = document.getElementById("question");
+var highScores = document.getElementById("scoreboard");
+var submitScore = document.getElementById("submit-button");
 
 var secondsLeft = 75;
 var currentQuestion;
-var highScores = [];
 var currentQuestionIndex = 0;
 var arrayOfQuestions = [
   {
@@ -62,6 +63,11 @@ function countDown() {
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
     }
+    if (currentQuestionIndex >= 5) {
+      clearInterval(timerInterval);
+      highScores.style.display = "block";
+      jumbo.style.display = "none";
+    }
   }, 1000);
   displayQuestion();
 }
@@ -69,10 +75,10 @@ function countDown() {
 
 function displayQuestion() {
   if (currentQuestionIndex >= arrayOfQuestions.length) {
-      console.log("hello")
+    //   console.log("hello")
     questionEl.innerHTML = "";
     answerEl.innerHTML = "";
-    window.location.href = "highscore.html";
+    // window.location.href = "highscore.html";
   } else {
     console.log("started quiz");
 
@@ -81,7 +87,7 @@ function displayQuestion() {
 
     // Use DOM Manipulation to clear the start screen
     jumbo.innerHTML = "";
-    
+
     questionEl.textContent = currentQuestion.question;
 
     //create a for loop to iterate through the answers array
@@ -116,20 +122,17 @@ function nextQuestion(rightAnswer, currentAnswer) {
   if (currentAnswer == rightAnswer) {
     console.log("correct");
   } else {
-      console.log("incorrect")
-      secondsLeft -= 10;
+    console.log("incorrect");
+    secondsLeft -= 10;
   }
   questionEl.innerHTML = "";
   answerEl.innerHTML = "";
   currentQuestionIndex = currentQuestionIndex + 1;
-  console.log("hi");
+  //   console.log("hi");
+
+  console.log(secondsLeft);
   displayQuestion();
 }
-
-function highScores() {}
-
-// For loop to iterate through question array
-// for (var i = 0; i <arrayOfQuestions[answers].length; i++) {}
 
 //function calls
 
@@ -137,3 +140,28 @@ startButton.addEventListener("click", countDown);
 viewHighscores.onclick = function () {
   window.location.href = "highscore.html";
 };
+submitScore.addEventListener("click", function () {
+  var userName = document.getElementById("initials").value;
+  console.log(userName);
+  var userScore = window.localStorage.getItem(userName);
+  userScore = secondsLeft;
+  window.localStorage.setItem(userName, userScore);
+  function displayScores() {
+    var user;
+    var score;
+    var storedScores = Object.entries(localStorage).map(function (storedInfo) {
+      return parseInt(storedInfo[1]);
+    });
+    var highestScore = Math.max(...storedScores);
+    var usersWithHighScore = Object.entries(localStorage).map(function (
+      keyValuePair
+    ) {
+      score = parseInt(keyValuePair[1]);
+      user = keyValuePair[0];
+      if (score === highestScore) {
+        return user;
+      }
+      document.getElementById("scores").innerText = localStorage.getItem(userName, userScore);
+    });
+  }
+});
