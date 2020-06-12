@@ -25,3 +25,7 @@ header {
   transform: translate(-50%, -50%);
     background-color: purple;
 }
+
+#scoreboard {
+    display: none;
+}
