@@ -1,8 +1,3 @@
-// var answerOne = document.getElementById("answer1");
-// var answerTwo = document.getElementById("answer2");
-// var answerThree = document.getElementById("answer3");
-// var answerFour = document.getElementById("answer4");
-
 var startButton = document.getElementById("startButton");
 var viewHighscores = document.getElementById("highscores");
 var timeEl = document.getElementById("timeEl");
@@ -11,6 +6,7 @@ var answerEl = document.getElementById("answers-ul");
 var questionDiv = document.getElementById("question");
 var highScores = document.getElementById("scoreboard");
 var submitScore = document.getElementById("submit-button");
+var scores = document.getElementById("scores");
 
 var secondsLeft = 75;
 var currentQuestion;
@@ -55,6 +51,16 @@ var questionEl = document.createElement("h5");
 // GIVEN I am taking a code quiz
 // WHEN I click the start button
 
+function getCurrentScores() {
+  for (var [key, value] of Object.entries(localStorage)) {
+    console.log(`${key}: ${value}`);
+    var scoreLi = document.createElement("li");
+    var content = document.createTextNode(`${key}: ${value}`);
+    scoreLi.appendChild(content);
+    scores.appendChild(scoreLi);
+  }
+}
+
 function countDown() {
   var timerInterval = setInterval(function () {
     secondsLeft--;
@@ -65,6 +71,7 @@ function countDown() {
     }
     if (currentQuestionIndex >= 5) {
       clearInterval(timerInterval);
+      getCurrentScores();
       highScores.style.display = "block";
       jumbo.style.display = "none";
     }
@@ -138,7 +145,9 @@ function nextQuestion(rightAnswer, currentAnswer) {
 
 startButton.addEventListener("click", countDown);
 viewHighscores.onclick = function () {
-  window.location.href = "highscore.html";
+  jumbo.style.display="none";
+  highScores.style.display="block"
+
 };
 submitScore.addEventListener("click", function () {
   var userName = document.getElementById("initials").value;
@@ -146,22 +155,6 @@ submitScore.addEventListener("click", function () {
   var userScore = window.localStorage.getItem(userName);
   userScore = secondsLeft;
   window.localStorage.setItem(userName, userScore);
-  function displayScores() {
-    var user;
-    var score;
-    var storedScores = Object.entries(localStorage).map(function (storedInfo) {
-      return parseInt(storedInfo[1]);
-    });
-    var highestScore = Math.max(...storedScores);
-    var usersWithHighScore = Object.entries(localStorage).map(function (
-      keyValuePair
-    ) {
-      score = parseInt(keyValuePair[1]);
-      user = keyValuePair[0];
-      if (score === highestScore) {
-        return user;
-      }
-      document.getElementById("scores").innerText = localStorage.getItem(userName, userScore);
-    });
-  }
+  scores.innerHTML = "";
+  getCurrentScores();
 });
