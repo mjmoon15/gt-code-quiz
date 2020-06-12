@@ -49,6 +49,7 @@ var arrayOfQuestions = [
     correctAnswer: "console.log",
   },
 ];
+var questionEl = document.createElement("h5");
 
 // GIVEN I am taking a code quiz
 // WHEN I click the start button
@@ -67,60 +68,65 @@ function countDown() {
 // on start button click the start page switches the the first question
 
 function displayQuestion() {
-  console.log("started quiz");
+  if (currentQuestionIndex >= arrayOfQuestions.length) {
+      console.log("hello")
+    questionEl.innerHTML = "";
+    answerEl.innerHTML = "";
+    window.location.href = "highscore.html";
+  } else {
+    console.log("started quiz");
 
-  var currentQuestion = arrayOfQuestions[currentQuestionIndex];
-  var answers = currentQuestion.answers;
+    var currentQuestion = arrayOfQuestions[currentQuestionIndex];
+    var answers = currentQuestion.answers;
 
-  // Use DOM Manipulation to clear the start screen
-  jumbo.innerHTML = "";
-  var questionEl = document.createElement("h5");
-  questionEl.textContent = currentQuestion.question;
-
-  //create a for loop to iterate through the answers array
-  for (var i = 0; i < answers.length; i++) {
-  // create variables for a new list item, button, and content to be generated 
-    var newLI = document.createElement("li");
-    var button = document.createElement("button");
-    var content = document.createTextNode(answers[i]);
-
-  //determine right/wrong
-    var rightAnswer = currentQuestion.correctAnswer;
-    var currentAnswer = answers[i]
-        
-  
-    // console.log(rightAnswer);
-    // console.log(answers[i]);
+    // Use DOM Manipulation to clear the start screen
+    jumbo.innerHTML = "";
     
+    questionEl.textContent = currentQuestion.question;
 
-  //append new content
-    button.appendChild(content);
-    button.addEventListener("click", function(){
-        nextQuestion(rightAnswer, currentAnswer)
-    });
-    
+    //create a for loop to iterate through the answers array
+    for (var i = 0; i < answers.length; i++) {
+      // create variables for a new list item, button, and content to be generated
+      var newLI = document.createElement("li");
+      var button = document.createElement("button");
+      var content = document.createTextNode(answers[i]);
 
-    newLI.appendChild(button);
-    answerEl.appendChild(newLI);
-    jumbo.append(questionEl);
+      //determine right/wrong
+      var rightAnswer = currentQuestion.correctAnswer;
+      var currentAnswer = answers[i];
+
+      // console.log(rightAnswer);
+      // console.log(answers[i]);
+
+      //append new content
+      button.appendChild(content);
+      button.addEventListener("click", function () {
+        nextQuestion(rightAnswer, currentAnswer);
+      });
+
+      newLI.appendChild(button);
+      answerEl.appendChild(newLI);
+      jumbo.append(questionEl);
+    }
   }
 }
 
-function nextQuestion(rightAnswer, currentAnswer){
-    console.log(rightAnswer, currentAnswer);
-    if (currentAnswer == rightAnswer){
-        
-        console.log("yeah")
-
-
-    }
-    questionEl.innerHTML = "";
-    answerEl.innerHTML = "";
-    currentQuestionIndex=currentQuestionIndex + 1;
-    console.log("hi")
-    displayQuestion()
+function nextQuestion(rightAnswer, currentAnswer) {
+  console.log(rightAnswer, currentAnswer);
+  if (currentAnswer == rightAnswer) {
+    console.log("correct");
+  } else {
+      console.log("incorrect")
+      secondsLeft -= 10;
+  }
+  questionEl.innerHTML = "";
+  answerEl.innerHTML = "";
+  currentQuestionIndex = currentQuestionIndex + 1;
+  console.log("hi");
+  displayQuestion();
 }
 
+function highScores() {}
 
 // For loop to iterate through question array
 // for (var i = 0; i <arrayOfQuestions[answers].length; i++) {}
@@ -131,4 +137,3 @@ startButton.addEventListener("click", countDown);
 viewHighscores.onclick = function () {
   window.location.href = "highscore.html";
 };
-
