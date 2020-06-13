@@ -7,6 +7,7 @@ var questionDiv = document.getElementById("question");
 var highScores = document.getElementById("scoreboard");
 var submitScore = document.getElementById("submit-button");
 var scores = document.getElementById("scores");
+var quizPage = document.getElementById("quiz-page")
 
 var secondsLeft = 75;
 var currentQuestion;
@@ -146,7 +147,8 @@ function nextQuestion(rightAnswer, currentAnswer) {
 startButton.addEventListener("click", countDown);
 viewHighscores.onclick = function () {
   jumbo.style.display="none";
-  highScores.style.display="block"
+  quizPage.style.display = "none"
+  highScores.style.display="block";
 
 };
 submitScore.addEventListener("click", function () {
